@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>OTT 드라마 방영시간 비교</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h2>OTT 드라마 방영시간 비교 (2010년대 vs 2020년대)</h2>
+  <canvas id="ottChart" width="600" height="300"></canvas>
+
+  <script>
+    const data = {
+      labels: ["2010년대", "2020년대"],
+      datasets: [
+        {
+          label: "1시간 이상",
+          data: [8, 30],
+          backgroundColor: "rgba(255, 99, 132, 0.7)"
+        },
+        {
+          label: "1시간 미만",
+          data: [12, 25],
+          backgroundColor: "rgba(54, 162, 235, 0.7)"
+        }
+      ]
+    };
+
+    new Chart(document.getElementById("ottChart"), {
+      type: "bar",
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: "top" },
+          title: { display: true, text: "OTT 드라마 1시간 이상 / 미만 비교" }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { stepSize: 5 } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

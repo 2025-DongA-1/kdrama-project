@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>OTT vs TV 드라마 방영시간 비교</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+      background-color: #f8f9fa;
+      text-align: center;
+      margin: 30px;
+    }
+    h2 {
+      color: #222;
+      margin-bottom: 40px;
+    }
+    .chart-container {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+    canvas {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      max-width: 450px;
+      height: 350px;
+    }
+  </style>
+</head>
+<body>
+  <h2>📺 OTT vs TV 드라마 방영시간 비교 (2010년대 vs 2020년대)</h2>
+
+  <div class="chart-container">
+    <canvas id="ottChart"></canvas>
+    <canvas id="tvChart"></canvas>
+  </div>
+
+  <script>
+    // ✅ 예시 데이터 (파이썬 chart_data.json 내용 그대로)
+    const ottData = {
+      labels: ["2010년대", "2020년대"],
+      datasets: [
+        {
+          label: "OTT 1시간 이상",
+          data: [8, 30],
+          backgroundColor: "rgba(255, 99, 132, 0.7)"
+        },
+        {
+          label: "OTT 1시간 이하",
+          data: [12, 25],
+          backgroundColor: "rgba(54, 162, 235, 0.7)"
+        }
+      ]
+    };
+
+    const tvData = {
+      labels: ["2010년대", "2020년대"],
+      datasets: [
+        {
+          label: "TV 1시간 이상",
+          data: [45, 60],
+          backgroundColor: "rgba(255, 159, 64, 0.7)"
+        },
+        {
+          label: "TV 1시간 이하",
+          data: [75, 85],
+          backgroundColor: "rgba(75, 192, 192, 0.7)"
+        }
+      ]
+    };
+
+    // ✅ OTT 그래프
+    new Chart(document.getElementById("ottChart"), {
+      type: "bar",
+      data: ottData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: "top" },
+          title: { display: true, text: "OTT 드라마 (1시간 이상 / 이하)" }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { stepSize: 5 } }
+        }
+      }
+    });
+
+    // ✅ TV 그래프
+    new Chart(document.getElementById("tvChart"), {
+      type: "bar",
+      data: tvData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: "top" },
+          title: { display: true, text: "TV 드라마 (1시간 이상 / 이하)" }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { stepSize: 10 } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

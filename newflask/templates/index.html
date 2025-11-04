@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>드라마 데이터 분석</title>
+    <title>k-drama 데이터 분석</title>
     <style>
         * {
             margin: 0;
@@ -138,7 +138,7 @@
 </head>
 <body>
     <div class="sidebar">
-        <h1 style="cursor:pointer;" onclick="showHome()">📊 드라마 분석</h1>
+        <h1 style="cursor:pointer;" onclick="showHome()">📊 드라마 데이터 분석 시스템</h1>
         
         <!-- TV 드라마 메뉴 -->
         <div class="menu-group">
@@ -147,11 +147,11 @@
                 <span class="arrow" id="tv-drama-arrow">▶</span>
             </div>
             <div class="submenu" id="tv-drama">
-                <button class="menu-btn" onclick="loadPage('/drama')">채널별 분석</button>
-                <button class="menu-btn" onclick="loadPage('/dramadate')">방영 요일 분석</button>
-                <button class="menu-btn" onclick="loadPage('/project')">한화당 시간 분석</button>
-                <button class="menu-btn" onclick="loadPage('/dramagen')">장르 수 분석</button>
-                <button class="menu-btn" onclick="loadPage('/brodchart')">평점 분석</button>
+                <button class="menu-btn" onclick="loadPage('/drama')">채널별 드라마 수</button>
+                <button class="menu-btn" onclick="loadPage('/dramadate')">방영 요일</button>
+                <button class="menu-btn" onclick="loadPage('/project')">러닝타임</button>
+                <button class="menu-btn" onclick="loadPage('/dramagen')">장르 수</button>
+                <button class="menu-btn" onclick="loadPage('/brodchart')">평점</button>
             </div>
         </div>
 
@@ -162,11 +162,11 @@
                 <span class="arrow" id="ott-drama-arrow">▶</span>
             </div>
             <div class="submenu" id="ott-drama">
-                <button class="menu-btn" onclick="loadPage('/ott')">플랫폼별 분석</button>
-                <button class="menu-btn" onclick="loadPage('/ottdate')">방영 요일 분석</button>
-                <button class="menu-btn" onclick="loadPage('/project2')">한화당 시간 분석</button>
-                <button class="menu-btn" onclick="loadPage('/ottgen')">장르 수 분석</button>
-                <button class="menu-btn" onclick="loadPage('/ottchart')">평점 분석</button>
+                <button class="menu-btn" onclick="loadPage('/ott')">채널별 드라마 수</button>
+                <button class="menu-btn" onclick="loadPage('/ottdate')">방영 요일</button>
+                <button class="menu-btn" onclick="loadPage('/project2')">러닝타임</button>
+                <button class="menu-btn" onclick="loadPage('/ottgen')">장르 수</button>
+                <button class="menu-btn" onclick="loadPage('/ottchart')">평점</button>
             </div>
         </div>
 
@@ -177,10 +177,10 @@
                 <span class="arrow" id="integrated-arrow">▶</span>
             </div>
             <div class="submenu" id="integrated">
-                <button class="menu-btn" onclick="loadPage('/all')">전체 플랫폼</button>
+                <button class="menu-btn" onclick="loadPage('/all')">전체 채널별</button>
                 <button class="menu-btn" onclick="loadPage('/alldate')">전체 방영 요일</button>
-                <button class="menu-btn" onclick="loadPage('/project3')">전체 한화당 시간 분석</button>
-                <button class="menu-btn" onclick="loadPage('/allgen')">전체 장르별 제작 개수 분석</button>
+                <button class="menu-btn" onclick="loadPage('/project3')">전체 러닝타임</button>
+                <button class="menu-btn" onclick="loadPage('/allgen')">전체 장르 수</button>
             </div>
         </div>
     </div>
@@ -190,7 +190,7 @@
             <div class="welcome-content">
                 <h2>🎬 드라마 데이터 분석 시스템</h2>
                 <p>왼쪽 메뉴에서 원하는 분석 항목을 선택하세요.<br>
-                2010년대와 2020년대 드라마 데이터를 비교 분석할 수 있습니다.</p>
+                2020년 전후 드라마 데이터를 비교 분석할 수 있습니다.</p>
             </div>
         </div>
     </div>

@@ -149,6 +149,10 @@ def alldate():
     """전체 드라마 방영 시기별 페이지"""
     return render_template('alldate.html')
 
+@app.route('/project')
+def project():
+    """tv 드라마 한화당 시간 페이지"""
+    return render_template('project.html')
 
 # ============================================
 # API 엔드포인트 - TV 채널별 드라마 수

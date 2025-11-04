@@ -793,6 +793,172 @@ async function createPiealldateChart2020() {
     });
 }
 
+async function createtvgenbarChart2010() {
+    // API로부터 2010년대 TV 드라마 데이터 요청
+    const response = await fetch('/api/bargen-data-2010');
+    const data = await response.json();
+
+    // 차트를 렌더링할 캔버스 요소 가져오기
+    const tvgen2010 = document.getElementById('bargenChart2010');
+
+    // Chart.js 인스턴스 생성
+    const tvgen2010Chart = new Chart(tvgen2010, {
+        type: 'bar', // 차트 타입: 막대 차트
+        data: {
+            labels: data.labels, // X축 레이블 (연도별)
+            datasets: [{
+                label: '장르 수', // 데이터셋 레이블
+                data: data.values, // Y축 값 (드라마 개수)
+                backgroundColor: 'rgba(54, 162, 235, 0.7)', // 막대 배경색 (파란색, 투명도 70%)
+                borderColor: 'rgba(54, 162, 235, 1)', // 막대 테두리 색
+                borderWidth: 1 // 테두리 두께
+            }]
+        },
+        options: {
+            responsive: true, // 반응형 차트 활성화
+            maintainAspectRatio: false, // 비율 유지 비활성화 (컨테이너 크기에 맞춤)
+            plugins: {
+                legend: {
+                    display: true, // 범례 표시
+                    position: 'top' // 범례 위치: 상단
+                },
+                title: {
+                    display: true, // 제목 표시
+                    text: '2010년대 tv 장르 수', // 차트 제목
+                    font: {
+                        size: 18, // 제목 폰트 크기
+                        weight: 'bold' // 제목 폰트 굵기
+                    }
+                }
+            }
+        }
+    });
+}
+
+async function createtvgenbarChart2020() {
+    // API로부터 2020년대 TV 드라마 데이터 요청
+    const response = await fetch('/api/bargen-data-2020');
+    const data = await response.json();
+
+    // 차트를 렌더링할 캔버스 요소 가져오기
+    const tvgen2020 = document.getElementById('bargenChart2020');
+
+    // Chart.js 인스턴스 생성
+    const tvgen2020Chart = new Chart(tvgen2020, {
+        type: 'bar', // 차트 타입: 막대 차트
+        data: {
+            labels: data.labels, // X축 레이블 (연도별)
+            datasets: [{
+                label: '장르 수', // 데이터셋 레이블
+                data: data.values, // Y축 값 (드라마 개수)
+                backgroundColor: 'rgba(54, 162, 235, 0.7)', // 막대 배경색 (파란색, 투명도 70%)
+                borderColor: 'rgba(54, 162, 235, 1)', // 막대 테두리 색
+                borderWidth: 1 // 테두리 두께
+            }]
+        },
+        options: {
+            responsive: true, // 반응형 차트 활성화
+            maintainAspectRatio: false, // 비율 유지 비활성화 (컨테이너 크기에 맞춤)
+            plugins: {
+                legend: {
+                    display: true, // 범례 표시
+                    position: 'top' // 범례 위치: 상단
+                },
+                title: {
+                    display: true, // 제목 표시
+                    text: '2020년대 tv 장르 수', // 차트 제목
+                    font: {
+                        size: 18, // 제목 폰트 크기
+                        weight: 'bold' // 제목 폰트 굵기
+                    }
+                }
+            }
+        }
+    });
+}
+
+async function createottgenbarChart2010() {
+    // API로부터 2020년대 OTT 드라마 데이터 요청
+    const response = await fetch('/api/bargen-ott-2010');
+    const data = await response.json();
+
+    // 차트를 렌더링할 캔버스 요소 가져오기
+    const ottgen2020 = document.getElementById('barottgenChart2010');
+
+    // Chart.js 인스턴스 생성
+    const ottgen2020Chart = new Chart(ottgen2020, {
+        type: 'bar', // 차트 타입: 막대 차트
+        data: {
+            labels: data.labels, // X축 레이블 (연도별)
+            datasets: [{
+                label: '장르 수', // 데이터셋 레이블
+                data: data.values, // Y축 값 (드라마 개수)
+                backgroundColor: 'rgba(54, 162, 235, 0.7)', // 막대 배경색 (파란색, 투명도 70%)
+                borderColor: 'rgba(54, 162, 235, 1)', // 막대 테두리 색
+                borderWidth: 1 // 테두리 두께
+            }]
+        },
+        options: {
+            responsive: true, // 반응형 차트 활성화
+            maintainAspectRatio: false, // 비율 유지 비활성화 (컨테이너 크기에 맞춤)
+            plugins: {
+                legend: {
+                    display: true, // 범례 표시
+                    position: 'top' // 범례 위치: 상단
+                },
+                title: {
+                    display: true, // 제목 표시
+                    text: '2010년대 ott 장르 수', // 차트 제목
+                    font: {
+                        size: 18, // 제목 폰트 크기
+                        weight: 'bold' // 제목 폰트 굵기
+                    }
+                }
+            }
+        }
+    });
+}
+async function createottgenbarChart2020() {
+    // API로부터 2020년대 OTT 드라마 데이터 요청
+    const response = await fetch('/api/bargen-ott-2020');
+    const data = await response.json();
+
+    // 차트를 렌더링할 캔버스 요소 가져오기
+    const ottgen2020 = document.getElementById('barottgenChart2020');
+
+    // Chart.js 인스턴스 생성
+    const ottgen2020Chart = new Chart(ottgen2020, {
+        type: 'bar', // 차트 타입: 막대 차트
+        data: {
+            labels: data.labels, // X축 레이블 (연도별)
+            datasets: [{
+                label: '장르 수', // 데이터셋 레이블
+                data: data.values, // Y축 값 (드라마 개수)
+                backgroundColor: 'rgba(54, 162, 235, 0.7)', // 막대 배경색 (파란색, 투명도 70%)
+                borderColor: 'rgba(54, 162, 235, 1)', // 막대 테두리 색
+                borderWidth: 1 // 테두리 두께
+            }]
+        },
+        options: {
+            responsive: true, // 반응형 차트 활성화
+            maintainAspectRatio: false, // 비율 유지 비활성화 (컨테이너 크기에 맞춤)
+            plugins: {
+                legend: {
+                    display: true, // 범례 표시
+                    position: 'top' // 범례 위치: 상단
+                },
+                title: {
+                    display: true, // 제목 표시
+                    text: '2020년대 ott 장르 수', // 차트 제목
+                    font: {
+                        size: 18, // 제목 폰트 크기
+                        weight: 'bold' // 제목 폰트 굵기
+                    }
+                }
+            }
+        }
+    });
+}
 /**
  * 페이지 로드 시 모든 차트 초기화
  * window.addEventListener('load')를 사용하여 DOM이 완전히 로드된 후 실행
@@ -819,4 +985,12 @@ window.addEventListener('load', () => {
     // 파이 차트 생성 (전체 방영 시기별)
     createPiealldateChart2010();
     createPiealldateChart2020();
+
+    // 바 차트 생성 (tv 장르 수)
+    createtvgenbarChart2010();
+    createtvgenbarChart2020();
+
+    // 바 차트 생성 (ott 장르 수)
+    createottgenbarChart2010();
+    createottgenbarChart2020();
 });

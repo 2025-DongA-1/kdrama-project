@@ -7,6 +7,7 @@ Flask 기반 드라마 데이터 시각화 웹 애플리케이션
 
 from flask import Flask, render_template, jsonify
 import pandas as pd
+import json
 
 # Flask 애플리케이션 인스턴스 생성
 app = Flask(__name__)
@@ -17,6 +18,9 @@ app = Flask(__name__)
 
 # CSV 파일에서 드라마 데이터 불러오기
 data123 = pd.read_csv('./channelData.CSV')
+
+# CSV 파일에서 장르 하나씩 데이터 나누기
+data123['MAIN_GENRE'] = data123['GENRE'].str.split(',').str[0]
 
 # DRAMA_PK 컬럼 제거 (Primary Key로 분석에 불필요)
 data = data123.drop('DRAMA_PK', axis=1)
@@ -153,6 +157,42 @@ def alldate():
 def project():
     """tv 드라마 한화당 시간 페이지"""
     return render_template('project.html')
+
+@app.route('/project2')
+def project2():
+    """ott 드라마 한화당 시간 페이지"""
+    return render_template('project2.html')
+
+@app.route('/project3')
+def project3():
+    """전체 드라마 한화당 시간 페이지"""
+    return render_template('project3.html')
+
+@app.route('/dramagen')
+def dramagen():
+    """tv 드라마 장르 페이지"""
+    return render_template('dramagen.html')
+
+@app.route('/ottgen')
+def ottgen():
+    """ott 드라마 장르 페이지"""
+    return render_template('ottgen.html')
+
+@app.route('/allgen')
+def allgen():
+    """전체 드라마 장르 페이지"""
+    return render_template('allgen.html')
+
+@app.route('/brodchart')
+def brodchart():
+    """tv 드라마 평점 비교 페이지"""
+    return render_template('brodchart.html')
+
+@app.route('/ottchart')
+def ottchart():
+    """ott 드라마 평점 비교 페이지"""
+    return render_template('ottchart.html')
+
 
 # ============================================
 # API 엔드포인트 - TV 채널별 드라마 수
@@ -531,6 +571,90 @@ def alldate2020():
         'labels': labels,
         'values': values,
         'backgroundColor': colors[:len(labels)]
+    }
+    return jsonify(data)
+
+# ============================================
+# API 엔드포인트 - TV 채널별 드라마 수
+# ============================================
+
+@app.route('/api/bargen-data-2010')
+def dramagen2010():
+    """
+    2010년대 TV 장르 수 데이터 반환
+    """
+    
+    
+    # OG_NETWORK 컬럼의 값 개수 집계 (내림차순 정렬)
+    dramage2010 = tv2010['MAIN_GENRE'].value_counts()
+    
+    # 인덱스(채널명)를 리스트로 변환
+    labels = dramage2010.index.tolist()
+    
+    # 값(드라마 수)을 리스트로 변환
+    values = dramage2010.values.tolist()
+
+    # JSON 형식으로 반환할 딕셔너리 생성
+    data = {
+        'labels': labels,
+        'values': values
+    }
+    return jsonify(data)
+
+
+@app.route('/api/bargen-data-2020')
+def dramagen2020():
+    """
+    2020년대 TV 장르 수 데이터 반환
+    
+
+    """
+    dramage2020 = tv2020['MAIN_GENRE'].value_counts()
+    labels = dramage2020.index.tolist()
+    values = dramage2020.values.tolist()
+
+    data = {
+        'labels': labels,
+        'values': values
+    }
+    return jsonify(data)
+
+
+# ============================================
+# API 엔드포인트 - OTT 플랫폼별 드라마 수
+# ============================================
+
+@app.route('/api/bargen-ott-2010')
+def ottgen2010():
+    """
+    2010년대 OTT 장르 수 데이터 반환
+    
+    """
+    ottge2010 = ott2010['MAIN_GENRE'].value_counts()
+    labels = ottge2010.index.tolist()
+    values = ottge2010.values.tolist()
+
+    data = {
+        'labels': labels,
+        'values': values
+    }
+    return jsonify(data)
+
+
+@app.route('/api/bargen-ott-2020')
+def ottgen2020():
+    """
+    2020년대 OTT 장르 수 데이터 반환
+    
+
+    """
+    ottge2020 = ott2020['MAIN_GENRE'].value_counts()
+    labels = ottge2020.index.tolist()
+    values = ottge2020.values.tolist()
+
+    data = {
+        'labels': labels,
+        'values': values
     }
     return jsonify(data)
 

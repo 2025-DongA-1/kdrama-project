@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연대별 플랫폼 드라마 분석</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+        }
+        .charts-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .chart-container {
+            flex: 1;
+            min-width: 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .chart-wrapper {
+            position: relative;
+            height: 500px;
+        }
+        h2 {
+            color: #555;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        .chart-container:first-child h2 {
+            border-bottom-color: #f093fb;
+        }
+        .chart-container:last-child h2 {
+            border-bottom-color: #4facfe;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>📺 2010년대 vs 2020년대 TV 드라마 비교</h1>
+    
+    <div class="charts-row">
+        <div class="chart-container">
+            <h2>2010년대</h2>
+            <div class="chart-wrapper">
+                <canvas id="piedateChart2010"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h2>2020년대</h2>
+            <div class="chart-wrapper">
+                <canvas id="piedateChart2020"></canvas>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="../static/drama.js"></script>
+</body>
+</html>

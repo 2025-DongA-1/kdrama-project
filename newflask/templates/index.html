@@ -1,3 +1,4 @@
+index.html 변경
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -25,7 +26,6 @@
             padding: 20px;
             box-shadow: 2px 0 10px rgba(0,0,0,0.1);
             overflow-y: auto;
-            overflow-x: hidden;
         }
 
         .sidebar h1 {
@@ -36,30 +36,60 @@
         }
 
         .menu-group {
-            margin-bottom: 25px;
+            margin-bottom: 15px;
         }
 
-        .menu-group h3 {
-            font-size: 14px;
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .menu-group-header {
+            font-size: 16px;
+            font-weight: bold;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-group-header:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .arrow {
+            transition: transform 0.3s ease;
+            font-size: 12px;
+        }
+
+        .arrow.open {
+            transform: rotate(90deg);
+        }
+
+        .submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .submenu.open {
+            max-height: 500px;
         }
 
         .menu-btn {
             display: block;
             width: 100%;
-            padding: 12px 15px;
-            margin-bottom: 8px;
+            padding: 10px 15px;
+            margin-bottom: 6px;
             background: rgba(255,255,255,0.1);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             text-align: left;
-            font-size: 15px;
+            font-size: 14px;
             transition: all 0.3s ease;
+            margin-left: 10px;
         }
 
         .menu-btn:hover {
@@ -109,32 +139,50 @@
 </head>
 <body>
     <div class="sidebar">
-        <h1>📊 드라마 분석</h1>
+        <h1 style="cursor:pointer;" onclick="showHome()">📊 드라마 분석</h1>
         
+        <!-- TV 드라마 메뉴 -->
         <div class="menu-group">
-            <h3>TV 드라마</h3>
-            <button class="menu-btn" onclick="loadPage('/drama')">채널별 분석</button>
-            <button class="menu-btn" onclick="loadPage('/dramadate')">방영 요일 분석</button>
-            <button class="menu-btn" onclick="loadPage('/project')">한화당 시간 분석</button>
-            <button class="menu-btn" onclick="loadPage('/dramagen')">장르 수 분석</button>
-            <button class="menu-btn" onclick="loadPage('/brodchart')">평점 분석</button>
+            <div class="menu-group-header" onclick="toggleMenu('tv-drama')">
+                <span>📺 TV 드라마</span>
+                <span class="arrow" id="tv-drama-arrow">▶</span>
+            </div>
+            <div class="submenu" id="tv-drama">
+                <button class="menu-btn" onclick="loadPage('/drama')">채널별 분석</button>
+                <button class="menu-btn" onclick="loadPage('/dramadate')">방영 요일 분석</button>
+                <button class="menu-btn" onclick="loadPage('/project')">한화당 시간 분석</button>
+                <button class="menu-btn" onclick="loadPage('/dramagen')">장르 수 분석</button>
+                <button class="menu-btn" onclick="loadPage('/brodchart')">평점 분석</button>
+            </div>
         </div>
 
+        <!-- OTT 드라마 메뉴 -->
         <div class="menu-group">
-            <h3>OTT 드라마</h3>
-            <button class="menu-btn" onclick="loadPage('/ott')">플랫폼별 분석</button>
-            <button class="menu-btn" onclick="loadPage('/ottdate')">방영 요일 분석</button>
-            <button class="menu-btn" onclick="loadPage('/project2')">한화당 시간 분석</button>
-            <button class="menu-btn" onclick="loadPage('/ottgen')">장르 수 분석</button>
-            <button class="menu-btn" onclick="loadPage('/ottchart')">평점 분석</button>
+            <div class="menu-group-header" onclick="toggleMenu('ott-drama')">
+                <span>🎬 OTT 드라마</span>
+                <span class="arrow" id="ott-drama-arrow">▶</span>
+            </div>
+            <div class="submenu" id="ott-drama">
+                <button class="menu-btn" onclick="loadPage('/ott')">플랫폼별 분석</button>
+                <button class="menu-btn" onclick="loadPage('/ottdate')">방영 요일 분석</button>
+                <button class="menu-btn" onclick="loadPage('/project2')">한화당 시간 분석</button>
+                <button class="menu-btn" onclick="loadPage('/ottgen')">장르 수 분석</button>
+                <button class="menu-btn" onclick="loadPage('/ottchart')">평점 분석</button>
+            </div>
         </div>
 
+        <!-- 통합 분석 메뉴 -->
         <div class="menu-group">
-            <h3>통합 분석</h3>
-            <button class="menu-btn" onclick="loadPage('/all')">전체 플랫폼</button>
-            <button class="menu-btn" onclick="loadPage('/alldate')">전체 방영 요일</button>
-            <button class="menu-btn" onclick="loadPage('/project3')">전체 한화당 시간 분석</button>
-            <button class="menu-btn" onclick="loadPage('/brodcharttotal')">전체 평점 분석</button>
+            <div class="menu-group-header" onclick="toggleMenu('integrated')">
+                <span>📈 통합 분석</span>
+                <span class="arrow" id="integrated-arrow">▶</span>
+            </div>
+            <div class="submenu" id="integrated">
+                <button class="menu-btn" onclick="loadPage('/all')">전체 플랫폼</button>
+                <button class="menu-btn" onclick="loadPage('/alldate')">전체 방영 요일</button>
+                <button class="menu-btn" onclick="loadPage('/project3')">전체 한화당 시간 분석</button>
+                <button class="menu-btn" onclick="loadPage('/allgen')">전체 장르별 제작 개수 분석</button>
+            </div>
         </div>
     </div>
 
@@ -149,6 +197,14 @@
     </div>
 
     <script>
+        function toggleMenu(menuId) {
+            const submenu = document.getElementById(menuId);
+            const arrow = document.getElementById(menuId + '-arrow');
+            
+            submenu.classList.toggle('open');
+            arrow.classList.toggle('open');
+        }
+
         function loadPage(url) {
             const content = document.getElementById('content');
             content.innerHTML = `<iframe src="${url}"></iframe>`;
@@ -159,6 +215,43 @@
             });
             event.target.classList.add('active');
         }
+
+    function toggleMenu(menuId) {
+        const submenu = document.getElementById(menuId);
+        const arrow = document.getElementById(menuId + '-arrow');
+        submenu.classList.toggle('open');
+        arrow.classList.toggle('open');
+    }
+
+    function loadPage(url) {
+        const content = document.getElementById('content');
+        content.innerHTML = `<iframe src="${url}"></iframe>`;
+
+        // 버튼 스타일 초기화 + 클릭된 버튼 강조
+        document.querySelectorAll('.menu-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+    }
+
+    // ✅ 홈 화면으로 복귀하는 함수
+    function showHome() {
+        const content = document.getElementById('content');
+        content.innerHTML = `
+            <div class="welcome">
+                <div class="welcome-content">
+                    <h2>🎬 드라마 데이터 분석 시스템</h2>
+                    <p>왼쪽 메뉴에서 원하는 분석 항목을 선택하세요.<br>
+                    2010년대와 2020년대 드라마 데이터를 비교 분석할 수 있습니다.</p>
+                </div>
+            </div>
+        `;
+
+        // 활성 버튼 초기화 (모두 비활성화)
+        document.querySelectorAll('.menu-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+    }
     </script>
 </body>
 </html>

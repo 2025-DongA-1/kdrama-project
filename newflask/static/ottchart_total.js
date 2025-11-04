@@ -1,7 +1,7 @@
 fetch('static/chart_data_ott.json')
     .then(response => response.json())
     .then(data => {
-        const ctx = document.getElementById('myBarChart').getContext('2d');
+        const ctx = document.getElementById('myBarChart2').getContext('2d');
         new Chart(ctx, {
             type: 'bar',
             data: {

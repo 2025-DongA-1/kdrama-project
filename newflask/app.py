@@ -193,6 +193,10 @@ def ottchart():
     """ott 드라마 평점 비교 페이지"""
     return render_template('ottchart.html')
 
+@app.route('/brodcharttotal')
+def brodcharttotal():
+    """전체 드라마 평점 비교 페이지"""
+    return render_template('brodchart_total.html')
 
 # ============================================
 # API 엔드포인트 - TV 채널별 드라마 수

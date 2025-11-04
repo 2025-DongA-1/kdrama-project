@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>방송사 드라마 상영시간 비교</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f9f9f9;
+      text-align: center;
+      padding: 30px;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    .chart-container {
+      width: 45%;
+      display: inline-block;
+      margin: 20px;
+    }
+    canvas {
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>📺 방송사 드라마 상영시간 변화 비교</h2>
+
+  <div class="chart-container">
+    <h3>2010년대</h3>
+    <canvas id="chart2010"></canvas>
+  </div>
+
+  <div class="chart-container">
+    <h3>2020년대</h3>
+    <canvas id="chart2020"></canvas>
+  </div>
+
+  <script>
+    // ✅ CSV를 미리 JS에서 정리한 데이터라고 가정
+    // 실제로는 파이썬에서 계산 후 숫자만 넣으면 됨
+    // 예: 1시간 이상 40편, 1시간 미만 90편 이런 식
+    const data_2010 = {
+      labels: ['1시간 미만', '1시간 이상'],
+      datasets: [{
+        label: '드라마 개수',
+        data: [30,112 ], // ← 이 부분만 실제 데이터로 바꿔주면 돼!
+        backgroundColor: ['#6EC1E4', '#FFA500']
+      }]
+    };
+
+    const data_2020 = {
+      labels: ['1시간 미만', '1시간 이상'],
+      datasets: [{
+        label: '드라마 개수',
+        data: [ 11,94], // ← 여기도 바꾸면 됨
+        backgroundColor: ['#6EC1E4', '#FFA500']
+      }]
+    };
+
+    const options = {
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: { stepSize: 10 }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: true }
+      }
+    };
+
+    new Chart(document.getElementById('chart2010'), {
+      type: 'bar',
+      data: data_2010,
+      options: options
+    });
+
+    new Chart(document.getElementById('chart2020'), {
+      type: 'bar',
+      data: data_2020,
+      options: options
+    });
+  </script>
+
+</body>
+</html>

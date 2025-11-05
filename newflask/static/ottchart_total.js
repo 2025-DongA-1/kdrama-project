@@ -34,6 +34,7 @@ fetch('static/chart_data_ott.json')
                     min: 8.2,
                     maz: 9
                  } }
+                ,maintainAspectRatio: false
             }
         });
     })

@@ -32,7 +32,8 @@ fetch('static/ott_genre_counts.json')
           y: {
             beginAtZero: true
           }
-        }
+        },
+        maintainAspectRatio: false
       }
     });
   })

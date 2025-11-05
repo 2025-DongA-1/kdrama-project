@@ -33,7 +33,8 @@ fetch('static/ott_chart_data.json')
                     beginAtZero: true,
                     min: 8.2,
                     maz: 9
-                 } }
+                 } },
+                maintainAspectRatio: false
             }
         });
     })

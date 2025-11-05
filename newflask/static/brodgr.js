@@ -32,7 +32,8 @@ fetch('static/genre_counts.json')
           y: {
             beginAtZero: true
           }
-        }
+        },
+        maintainAspectRatio: false
       }
     });
   })

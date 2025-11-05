@@ -46,8 +46,8 @@ async function createtvbarChart2010() {
                     position: 'top' // 범례 위치: 상단
                 },
                 title: {
-                    display: true, // 제목 표시
-                    text: '2020년 이전 tv 드라마 수', // 차트 제목
+                    display: false, // 제목 표시
+                    // text: '2020년 이전 tv 드라마 수', // 차트 제목
                     font: {
                         size: 18, // 제목 폰트 크기
                         weight: 'bold' // 제목 폰트 굵기
@@ -105,8 +105,8 @@ async function createtvbarChart2020() {
                     position: 'top'
                 },
                 title: {
-                    display: true,
-                    text: '2020년 이후 tv 드라마 수',
+                    display: false,
+                    // text: '2020년 이후 tv 드라마 수',
                     font: {
                         size: 18,
                         weight: 'bold'
@@ -165,8 +165,8 @@ async function createtvbarChartott2010() {
                     position: 'top'
                 },
                 title: {
-                    display: true,
-                    text: '2020년 이전 ott 드라마 수',
+                    display: false,
+                    //text: '2020년 이전 ott 드라마 수',
                     font: {
                         size: 18,
                         weight: 'bold'
@@ -224,8 +224,8 @@ async function createtvbarChartott2020() {
                     position: 'top'
                 },
                 title: {
-                    display: true,
-                    text: '2020년 이후 ott 드라마 수',
+                    display: false,
+                    //text: '2020년 이후 ott 드라마 수',
                     font: {
                         size: 18,
                         weight: 'bold'
@@ -893,8 +893,8 @@ async function createtvgenbarChart2010() {
                     position: 'top' // 범례 위치: 상단
                 },
                 title: {
-                    display: true, // 제목 표시
-                    text: '2020년 이전 tv 장르 수', // 차트 제목
+                    display: false, // 제목 표시
+                    // text: '2020년 이전 tv 장르 수', // 차트 제목
                     font: {
                         size: 18, // 제목 폰트 크기
                         weight: 'bold' // 제목 폰트 굵기
@@ -949,8 +949,8 @@ async function createtvgenbarChart2020() {
                     position: 'top' // 범례 위치: 상단
                 },
                 title: {
-                    display: true, // 제목 표시
-                    text: '2020년 이후 tv 장르 수', // 차트 제목
+                    display: false, // 제목 표시
+                    // text: '2020년 이후 tv 장르 수', // 차트 제목
                     font: {
                         size: 18, // 제목 폰트 크기
                         weight: 'bold' // 제목 폰트 굵기
@@ -1005,8 +1005,8 @@ async function createottgenbarChart2010() {
                     position: 'top' // 범례 위치: 상단
                 },
                 title: {
-                    display: true, // 제목 표시
-                    text: '2020년 이전 ott 장르 수', // 차트 제목
+                    display: false, // 제목 표시
+                    //text: '2020년 이전 ott 장르 수', // 차트 제목
                     font: {
                         size: 18, // 제목 폰트 크기
                         weight: 'bold' // 제목 폰트 굵기
@@ -1060,8 +1060,8 @@ async function createottgenbarChart2020() {
                     position: 'top' // 범례 위치: 상단
                 },
                 title: {
-                    display: true, // 제목 표시
-                    text: '2020년 이후 ott 장르 수', // 차트 제목
+                    display: false, // 제목 표시
+                    // text: '2020년 이후 ott 장르 수', // 차트 제목
                     font: {
                         size: 18, // 제목 폰트 크기
                         weight: 'bold' // 제목 폰트 굵기

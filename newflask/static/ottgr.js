@@ -11,14 +11,14 @@ fetch('static/ott_genre_counts.json')
         labels: labels,
         datasets: [
           {
-            label: '2010년대',
+            label: '2020년 이전',
             data: data.map(item => item["2010년대"]), // 2010년대 데이터
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1
           },
           {
-            label: '2020년대',
+            label: '2020년 이후',
             data: data.map(item => item["2020년대"]), // 2020년대 데이터
             backgroundColor: 'rgba(54, 162, 235, 0.5)',
             borderColor: 'rgba(54, 162, 235, 1)',

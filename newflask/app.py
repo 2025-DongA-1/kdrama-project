@@ -18,7 +18,7 @@ app = Flask(__name__)
 
 # CSV 파일에서 드라마 데이터 불러오기
 data123 = pd.read_csv('./channelData.CSV')
-
+data123['AIR_ON'] = data123['AIR_ON'].replace('Sunday,Saturday', 'Saturday,Sunday')
 # CSV 파일에서 장르 하나씩 데이터 나누기
 data123['MAIN_GENRE'] = data123['GENRE'].str.split(',').str[0]
 
@@ -100,7 +100,7 @@ all2010 = data2010[
 # 2020년대 전체 데이터 (마이너 채널 제외)
 # ViuTv, Viki, iQiyi, ENA, Hulu, Channel A 제외
 all2020 = data2020[
-    (data2020['OG_NETWORK'] != 'ViuTv') & 
+    (data2020['OG_NETWORK'] != 'ViuTV') & 
     (data2020['OG_NETWORK'] != 'Viki') & 
     (data2020['OG_NETWORK'] != 'iQiyi') & 
     (data2020['OG_NETWORK'] != 'ENA') & 

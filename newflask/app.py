@@ -118,85 +118,85 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/drama')
+@app.route('/tv_count')
 def comparison():
-    """TV 드라마 비교 페이지"""
-    return render_template('drama.html')
+    """tv 채널별 드라마 수 페이지"""
+    return render_template('tv_count.html')
 
 
-@app.route('/ott')
+@app.route('/ott_count')
 def ottdrama():
-    """OTT 드라마 페이지"""
-    return render_template('ott.html')
+    """OTT 채널별 드라마 수 페이지"""
+    return render_template('ott_count.html')
 
 
-@app.route('/all')
+@app.route('/all_count')
 def alldrama():
-    """전체 드라마 페이지"""
-    return render_template('all.html')
+    """전체 채널별 드라마 수 페이지"""
+    return render_template('all_count.html')
 
 
-@app.route('/dramadate')
+@app.route('/tv_date')
 def dramadate():
-    """TV 드라마 방영 시기별 페이지"""
-    return render_template('dramadate.html')
+    """TV 방영 요일 페이지"""
+    return render_template('tv_date.html')
 
 
-@app.route('/ottdate')
+@app.route('/ott_date')
 def ottdate():
-    """OTT 드라마 방영 시기별 페이지"""
-    return render_template('ottdate.html')
+    """OTT 방영 요일 페이지"""
+    return render_template('ott_date.html')
 
 
-@app.route('/alldate')
+@app.route('/all_date')
 def alldate():
-    """전체 드라마 방영 시기별 페이지"""
-    return render_template('alldate.html')
+    """전체 방영 요일 페이지"""
+    return render_template('all_date.html')
 
-@app.route('/project')
+@app.route('/tv_runningtime')
 def project():
-    """tv 드라마 한화당 시간 페이지"""
-    return render_template('project.html')
+    """tv 러닝타임 페이지"""
+    return render_template('tv_runningtime.html')
 
-@app.route('/project2')
+@app.route('/ott_runningtime')
 def project2():
-    """ott 드라마 한화당 시간 페이지"""
-    return render_template('project2.html')
+    """ott 러닝타임 페이지"""
+    return render_template('ott_runningtime.html')
 
-@app.route('/project3')
+@app.route('/all_runningtime')
 def project3():
-    """전체 드라마 한화당 시간 페이지"""
-    return render_template('project3.html')
+    """전체 러닝타임 페이지"""
+    return render_template('all_runningtime.html')
 
-@app.route('/dramagen')
+@app.route('/tv_genre')
 def dramagen():
-    """tv 드라마 장르 페이지"""
-    return render_template('dramagen.html')
+    """tv 장르 수 페이지"""
+    return render_template('tv_genre.html')
 
-@app.route('/ottgen')
+@app.route('/ott_genre')
 def ottgen():
-    """ott 드라마 장르 페이지"""
-    return render_template('ottgen.html')
+    """ott 장르 수 페이지"""
+    return render_template('ott_genre.html')
 
-@app.route('/allgen')
+@app.route('/all_genre')
 def allgen():
-    """전체 드라마 장르 페이지"""
-    return render_template('allgen.html')
+    """전체 장르 수 페이지"""
+    return render_template('all_genre.html')
 
-@app.route('/brodchart')
+@app.route('/tv_rating')
 def brodchart():
-    """tv 드라마 평점 비교 페이지"""
-    return render_template('brodchart.html')
+    """tv 평점 페이지"""
+    return render_template('tv_rating.html')
 
-@app.route('/ottchart')
+@app.route('/ott_rating')
 def ottchart():
-    """ott 드라마 평점 비교 페이지"""
-    return render_template('ottchart.html')
+    """ott 평점 페이지"""
+    return render_template('ott_rating.html')
 
-@app.route('/brodcharttotal')
+@app.route('/all_rating')
 def brodcharttotal():
-    """전체 드라마 평점 비교 페이지"""
-    return render_template('brodchart_total.html')
+    """전체 평점 페이지"""
+    return render_template('all_rating.html')
 
 # ============================================
 # API 엔드포인트 - TV 채널별 드라마 수

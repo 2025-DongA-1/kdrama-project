@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2020년 전후 TV 장르 수 비교</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
-    <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             max-width: 1400px;
@@ -48,30 +40,3 @@
         .chart-container:last-child h2 {
             border-bottom-color: #4facfe;
         }
-    </style>
-</head>
-<body>
-    
-    <h1>📺 2020년 전후 TV 장르 수 비교</h1>
-    
-    <div class="charts-row">
-        <div class="chart-container">
-            <h2>2020년 이전</h2>
-            <div class="chart-wrapper">
-                <canvas id="bargenChart2010"></canvas>
-            </div>
-        </div>
-
-        <div class="chart-container">
-            <h2>2020년 이후</h2>
-            <div class="chart-wrapper">
-                <canvas id="bargenChart2020"></canvas>
-            </div>
-        </div>
-    </div>
-
-
-
-    <script src="../static/drama.js"></script>
-</body>
-</html>

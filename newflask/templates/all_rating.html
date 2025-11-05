@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>2020년 전후 평점 통합 비교</title>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/chartTheme.css') }}">
+</head>
+<body>
+
+    <h1>📺 2020년 전후 평점 통합 비교</h1>
+    
+    <div class="charts-row">
+        <div class="chart-container">
+            <h2>TV</h2>
+            <div class="chart-wrapper">
+                <canvas id="myBarChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h2>OTT</h2>
+            <div class="chart-wrapper">
+                <canvas id="myBarChart2"></canvas>
+            </div>
+        </div>
+    </div>    
+
+    <!-- <h2>기존 방송사 전체 평균 평점 비교</h2>
+    <canvas id="myBarChart" width="400" height="200"></canvas>
+
+    <h2>OTT 전체 평균 평점 비교</h2>
+    <canvas id="myBarChart" width="400" height="200"></canvas> -->
+
+
+    <!-- 외부 JS 파일 불러오기 -->
+    <script src="../static/js/all_tv_rating.js"></script>
+    <script src="../static/js/all_ott_rating.js"></script>
+</body>
+</html>

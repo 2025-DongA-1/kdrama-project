@@ -1,7 +1,7 @@
-fetch('static/ott_chart_data.json')
+fetch('static/json/chart_data.json')
     .then(response => response.json())
     .then(data => {
-        const ctx = document.getElementById('myBarChart2010').getContext('2d');
+        const ctx = document.getElementById('myBarChart').getContext('2d');
         new Chart(ctx, {
             type: 'bar',
             data: {
@@ -32,7 +32,7 @@ fetch('static/ott_chart_data.json')
                 scales: { y: { 
                     beginAtZero: true,
                     min: 8.2,
-                    maz: 9
+                    max: 8.7
                  } },
                 maintainAspectRatio: false
             }

@@ -1,4 +1,4 @@
-fetch('static/brod2020_chart_data.json')
+fetch('static/json/brod2020_chart_data.json')
     .then(response => response.json())
     .then(data => {
         const ctx = document.getElementById('myBarChart2020').getContext('2d');

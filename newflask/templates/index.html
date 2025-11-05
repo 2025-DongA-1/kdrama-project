@@ -4,137 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>k-drama 데이터 분석</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .sidebar {
-            width: 250px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-            overflow-y: auto;
-        }
-
-        .sidebar h1 {
-            font-size: 28px;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid rgba(255,255,255,0.3);
-        }
-
-        .menu-group {
-            margin-bottom: 15px;
-        }
-
-        .menu-group-header {
-            font-size: 16px;
-            font-weight: bold;
-            padding: 12px 15px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .menu-group-header:hover {
-            background: rgba(255,255,255,0.25);
-        }
-
-        .arrow {
-            transition: transform 0.3s ease;
-            font-size: 12px;
-        }
-
-        .arrow.open {
-            transform: rotate(90deg);
-        }
-
-        .submenu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            margin-top: 8px;
-        }
-
-        .submenu.open {
-            max-height: 500px;
-        }
-
-        .menu-btn {
-            display: block;
-            width: 100%;
-            padding: 10px 15px;
-            margin-bottom: 6px;
-            background: rgba(255,255,255,0.1);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            text-align: left;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            margin-left: 10px;
-        }
-
-        .menu-btn:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateX(5px);
-        }
-
-        .menu-btn.active {
-            background: white;
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        .content {
-            flex: 1;
-            overflow: auto;
-            background-color: #f5f5f5;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .welcome {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            text-align: center;
-            padding: 40px;
-        }
-
-        .welcome-content h2 {
-            font-size: 48px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .welcome-content p {
-            font-size: 20px;
-            color: #666;
-            line-height: 1.6;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/index.css') }}">
 </head>
 <body>
     <div class="sidebar">
@@ -147,11 +17,11 @@
                 <span class="arrow" id="tv-drama-arrow">▶</span>
             </div>
             <div class="submenu" id="tv-drama">
-                <button class="menu-btn" onclick="loadPage('/drama')">채널별 드라마 수</button>
-                <button class="menu-btn" onclick="loadPage('/dramadate')">방영 요일</button>
-                <button class="menu-btn" onclick="loadPage('/project')">러닝타임</button>
-                <button class="menu-btn" onclick="loadPage('/dramagen')">장르 수</button>
-                <button class="menu-btn" onclick="loadPage('/brodchart')">평점</button>
+                <button class="menu-btn" onclick="loadPage('/tv_count')">채널별 드라마 수</button>
+                <button class="menu-btn" onclick="loadPage('/tv_date')">방영 요일</button>
+                <button class="menu-btn" onclick="loadPage('/tv_runningtime')">러닝타임</button>
+                <button class="menu-btn" onclick="loadPage('/tv_genre')">장르 수</button>
+                <button class="menu-btn" onclick="loadPage('/tv_rating')">평점</button>
             </div>
         </div>
 
@@ -162,11 +32,11 @@
                 <span class="arrow" id="ott-drama-arrow">▶</span>
             </div>
             <div class="submenu" id="ott-drama">
-                <button class="menu-btn" onclick="loadPage('/ott')">채널별 드라마 수</button>
-                <button class="menu-btn" onclick="loadPage('/ottdate')">방영 요일</button>
-                <button class="menu-btn" onclick="loadPage('/project2')">러닝타임</button>
-                <button class="menu-btn" onclick="loadPage('/ottgen')">장르 수</button>
-                <button class="menu-btn" onclick="loadPage('/ottchart')">평점</button>
+                <button class="menu-btn" onclick="loadPage('/ott_count')">채널별 드라마 수</button>
+                <button class="menu-btn" onclick="loadPage('/ott_date')">방영 요일</button>
+                <button class="menu-btn" onclick="loadPage('/ott_runningtime')">러닝타임</button>
+                <button class="menu-btn" onclick="loadPage('/ott_genre')">장르 수</button>
+                <button class="menu-btn" onclick="loadPage('/ott_rating')">평점</button>
             </div>
         </div>
 
@@ -177,11 +47,11 @@
                 <span class="arrow" id="integrated-arrow">▶</span>
             </div>
             <div class="submenu" id="integrated">
-                <button class="menu-btn" onclick="loadPage('/all')">전체 채널별</button>
-                <button class="menu-btn" onclick="loadPage('/alldate')">전체 방영 요일</button>
-                <button class="menu-btn" onclick="loadPage('/project3')">전체 러닝타임</button>
-                <button class="menu-btn" onclick="loadPage('/allgen')">전체 장르 수</button>
-                <button class="menu-btn" onclick="loadPage('/brodcharttotal')">전체 평점</button>
+                <button class="menu-btn" onclick="loadPage('/all_count')">전체 채널별</button>
+                <button class="menu-btn" onclick="loadPage('/all_date')">전체 방영 요일</button>
+                <button class="menu-btn" onclick="loadPage('/all_runningtime')">전체 러닝타임</button>
+                <button class="menu-btn" onclick="loadPage('/all_genre')">전체 장르 수</button>
+                <button class="menu-btn" onclick="loadPage('/all_rating')">전체 평점</button>
             </div>
         </div>
     </div>
@@ -242,7 +112,7 @@
                 <div class="welcome-content">
                     <h2>🎬 드라마 데이터 분석 시스템</h2>
                     <p>왼쪽 메뉴에서 원하는 분석 항목을 선택하세요.<br>
-                    2010년대와 2020년대 드라마 데이터를 비교 분석할 수 있습니다.</p>
+                    2020년 전후 드라마 데이터를 비교 분석할 수 있습니다.</p>
                 </div>
             </div>
         `;

@@ -2,134 +2,74 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>TV 드라마 러닝타임 비교</title>
+  <title>OTT 드라마 러닝타임 비교</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-    }
-    h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 40px;
-    }
-    .charts-row {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-    }
-    .chart-container {
-            flex: 1;
-            min-width: 500px;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    .chart-wrapper {
-            position: relative;
-            height: 500px;
-        }
-    h2 {
-            color: #555;
-            margin-bottom: 20px;
-            text-align: center;
-            border-bottom: 2px solid #4CAF50;
-            padding-bottom: 10px;
-    }
-    canvas {
-      background-color: white;
-      border-radius: 15px;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-      padding: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/chartTheme.css') }}">
+
 </head>
 <body>
 
-  <h1>📺 TV 드라마 러닝타임 변화 비교</h1>
-
+  <h1>OTT 드라마 러닝타임 비교</h1>
   <div class="charts-row">
     <div class="chart-container">
       <h2>2020년 이전</h2>
       <div class="chart-wrapper">
-        <canvas id="chart2010"></canvas>
+        <canvas id="ottChart"></canvas>
       </div>
     </div>
 
     <div class="chart-container">
       <h2>2020년 이후</h2>
       <div class="chart-wrapper">
-        <canvas id="chart2020"></canvas>
+        <canvas id="ottChart2"></canvas>
       </div>
     </div>
   </div>
+  
 
   <script>
-    // // ✅ CSV를 미리 JS에서 정리한 데이터라고 가정
-    // // 실제로는 파이썬에서 계산 후 숫자만 넣으면 됨
-    // // 예: 1시간 이상 40편, 1시간 미만 90편 이런 식
-    // const data_2010 = {
-    //   labels: ['1시간 미만', '1시간 이상'],
-    //   datasets: [{
-    //     label: '드라마 개수',
-    //     data: [30,112 ], // ← 이 부분만 실제 데이터로 바꿔주면 돼!
-    //     backgroundColor: ['#6EC1E4', '#FFA500']
-    //   }]
-    // };
-
-    // const data_2020 = {
-    //   labels: ['1시간 미만', '1시간 이상'],
-    //   datasets: [{
-    //     label: '드라마 개수',
-    //     data: [ 11,94], // ← 여기도 바꾸면 됨
-    //     backgroundColor: ['#6EC1E4', '#FFA500']
-    //   }]
-    // };
-
-    // const options = {
-    //   scales: {
-    //     y: {
-    //       beginAtZero: true,
-    //       ticks: { stepSize: 10 }
+    // const data = {
+    //   labels: ["2010년대", "2020년대"],
+    //   datasets: [
+    //     {
+    //       label: "1시간 이상",
+    //       data: [8, 30],
+    //       backgroundColor: "rgba(255, 99, 132, 0.7)"
+    //     },
+    //     {
+    //       label: "1시간 미만",
+    //       data: [12, 25],
+    //       backgroundColor: "rgba(54, 162, 235, 0.7)"
     //     }
-    //   },
-    //   plugins: {
-    //     legend: { display: false },
-    //     tooltip: { enabled: true }
-    //   }
+    //   ]
     // };
 
-    // new Chart(document.getElementById('chart2010'), {
-    //   type: 'bar',
-    //   data: data_2010,
-    //   options: options
+    // new Chart(document.getElementById("ottChart"), {
+    //   type: "bar",
+    //   data: data,
+    //   options: {
+    //     responsive: true,
+    //     plugins: {
+    //       legend: { position: "top" },
+    //       title: { display: true, text: "OTT 드라마 1시간 이상 / 미만 비교" }
+    //     },
+    //     scales: {
+    //       y: { beginAtZero: true, ticks: { stepSize: 5 } }
+    //     }
+    //   }
     // });
 
-    // new Chart(document.getElementById('chart2020'), {
-    //   type: 'bar',
-    //   data: data_2020,
-    //   options: options
-    // });
-
-async function createPieChart2010() {
-    // // API로부터 2010년대 파이 차트 데이터 요청
-    // const response = await fetch('/api/pie-data-2010');
-    // const data = await response.json();
+  async function createPieChart2010() {
 
     // 2D 렌더링 컨텍스트 가져오기
-    const piechart2010 = document.getElementById('chart2010').getContext('2d');
+    const piechart2010 = document.getElementById('ottChart').getContext('2d');
     
     new Chart(piechart2010, {
         type: 'pie', // 차트 타입: 파이 차트
         data: {
             labels: ['1시간 미만', '1시간 이상'], // 각 세그먼트의 레이블
             datasets: [{
-                data: [30,112], // 각 세그먼트의 값
+                data: [12,8], // 각 세그먼트의 값
                 backgroundColor: ['rgba(255, 99, 132, 0.7)','rgba(54, 162, 235, 0.7)'], // 각 세그먼트의 배경색 배열
                 borderWidth: 2, // 세그먼트 경계선 두께
                 borderColor: '#fff' // 세그먼트 경계선 색 (흰색)
@@ -196,20 +136,18 @@ async function createPieChart2010() {
     });
 }
 
-async function createPieChart2020() {
-    // // API로부터 2020년대 파이 차트 데이터 요청
-    // const response = await fetch('/api/pie-data-2010');
-    // const data = await response.json();
+  async function createPieChart2020() {
+
 
     // 2D 렌더링 컨텍스트 가져오기
-    const piechart2020 = document.getElementById('chart2020').getContext('2d');
+    const piechart2020 = document.getElementById('ottChart2').getContext('2d');
     
     new Chart(piechart2020, {
         type: 'pie', // 차트 타입: 파이 차트
         data: {
             labels: ['1시간 미만', '1시간 이상'], // 각 세그먼트의 레이블
             datasets: [{
-                data: [11,94], // 각 세그먼트의 값
+                data: [25,30], // 각 세그먼트의 값
                 backgroundColor: ['rgba(255, 99, 132, 0.7)','rgba(54, 162, 235, 0.7)'], // 각 세그먼트의 배경색 배열
                 borderWidth: 2, // 세그먼트 경계선 두께
                 borderColor: '#fff' // 세그먼트 경계선 색 (흰색)
@@ -279,9 +217,7 @@ async function createPieChart2020() {
 window.addEventListener('load', function() {
       createPieChart2010();
       createPieChart2020();
-    });
-    
+    });  
   </script>
-
 </body>
 </html>

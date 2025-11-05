@@ -1,7 +1,7 @@
-fetch('static/ott2020_chart_data.json')
+fetch('static/json/ott_chart_data.json')
     .then(response => response.json())
     .then(data => {
-        const ctx = document.getElementById('myBarChart2020').getContext('2d');
+        const ctx = document.getElementById('myBarChart2010').getContext('2d');
         new Chart(ctx, {
             type: 'bar',
             data: {

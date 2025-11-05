@@ -1,10 +1,10 @@
-fetch('static/genre_counts.json')
+fetch('static/json/ott_genre_counts.json')
   .then(response => response.json())
   .then(data => {
     // 장르 이름 (x축 라벨)
     const labels = data.map(item => item.MAIN_GENRE);
 
-    const ctx = document.getElementById('tvChart');
+    const ctx = document.getElementById('ottChart');
     new Chart(ctx, {
       type: 'bar',
       data: {

@@ -50,48 +50,216 @@
   </style>
 </head>
 <body>
-  <h1>OTT 드라마 방영시간 비교 (2010년대 vs 2020년대)</h1>
+
+  <h1>OTT 드라마 방영시간 비교</h1>
   <div class="charts-row">
     <div class="chart-container">
-      <h2>2010년대</h2>
+      <h2>2020년 이전</h2>
       <div class="chart-wrapper">
-        <canvas id="ottChart" width="600" height="300"></canvas>
+        <canvas id="ottChart"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <h2>2020년 이후</h2>
+      <div class="chart-wrapper">
+        <canvas id="ottChart2"></canvas>
+      </div>
     </div>
   </div>
-
   
 
   <script>
-    const data = {
-      labels: ["2010년대", "2020년대"],
-      datasets: [
-        {
-          label: "1시간 이상",
-          data: [8, 30],
-          backgroundColor: "rgba(255, 99, 132, 0.7)"
-        },
-        {
-          label: "1시간 미만",
-          data: [12, 25],
-          backgroundColor: "rgba(54, 162, 235, 0.7)"
-        }
-      ]
-    };
+    // const data = {
+    //   labels: ["2010년대", "2020년대"],
+    //   datasets: [
+    //     {
+    //       label: "1시간 이상",
+    //       data: [8, 30],
+    //       backgroundColor: "rgba(255, 99, 132, 0.7)"
+    //     },
+    //     {
+    //       label: "1시간 미만",
+    //       data: [12, 25],
+    //       backgroundColor: "rgba(54, 162, 235, 0.7)"
+    //     }
+    //   ]
+    // };
 
-    new Chart(document.getElementById("ottChart"), {
-      type: "bar",
-      data: data,
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { position: "top" },
-          title: { display: true, text: "OTT 드라마 1시간 이상 / 미만 비교" }
+    // new Chart(document.getElementById("ottChart"), {
+    //   type: "bar",
+    //   data: data,
+    //   options: {
+    //     responsive: true,
+    //     plugins: {
+    //       legend: { position: "top" },
+    //       title: { display: true, text: "OTT 드라마 1시간 이상 / 미만 비교" }
+    //     },
+    //     scales: {
+    //       y: { beginAtZero: true, ticks: { stepSize: 5 } }
+    //     }
+    //   }
+    // });
+
+  async function createPieChart2010() {
+
+    // 2D 렌더링 컨텍스트 가져오기
+    const piechart2010 = document.getElementById('ottChart').getContext('2d');
+    
+    new Chart(piechart2010, {
+        type: 'pie', // 차트 타입: 파이 차트
+        data: {
+            labels: ['1시간 미만', '1시간 이상'], // 각 세그먼트의 레이블
+            datasets: [{
+                data: [12,8], // 각 세그먼트의 값
+                backgroundColor: ['rgba(255, 99, 132, 0.7)','rgba(54, 162, 235, 0.7)'], // 각 세그먼트의 배경색 배열
+                borderWidth: 2, // 세그먼트 경계선 두께
+                borderColor: '#fff' // 세그먼트 경계선 색 (흰색)
+            }]
         },
-        scales: {
-          y: { beginAtZero: true, ticks: { stepSize: 5 } }
-        }
-      }
+        options: {
+            responsive: true, // 반응형 차트
+            maintainAspectRatio: false, // 비율 유지 비활성화
+            plugins: {
+                legend: {
+                    position: 'bottom', // 범례 위치: 하단
+                    labels: {
+                        padding: 15, // 범례 항목 간 간격
+                        font: {
+                            size: 12 // 범례 폰트 크기
+                        }
+                    }
+                },
+                title: {
+                    display: false // 제목 표시 안 함
+                },
+                tooltip: {
+                    callbacks: {
+                        // 툴팁 레이블 커스터마이징: "레이블: 값 (퍼센트%)" 형식
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return `${label}: ${value} (${percentage}%)`;
+                        }
+                    }
+                }
+            }
+        },
+        plugins: [{
+            // 커스텀 플러그인: 각 파이 세그먼트에 퍼센트 텍스트 표시
+            afterDatasetsDraw: function(chart) {
+                const ctx = chart.ctx; // 캔버스 컨텍스트
+                chart.data.datasets.forEach((dataset, i) => {
+                    const meta = chart.getDatasetMeta(i);
+                    if (!meta.hidden) {
+                        meta.data.forEach((element, index) => {
+                            // 텍스트 스타일 설정
+                            ctx.fillStyle = '#fff'; // 텍스트 색상 (흰색)
+                            ctx.font = 'bold 14px Arial'; // 텍스트 폰트
+                            ctx.textAlign = 'center'; // 텍스트 정렬: 중앙
+                            ctx.textBaseline = 'middle'; // 텍스트 기준선: 중간
+
+                            // 퍼센트 계산
+                            const data = dataset.data[index];
+                            const total = dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = ((data / total) * 100).toFixed(1) + '%';
+
+                            // 세그먼트 중앙 위치 가져오기
+                            const position = element.tooltipPosition();
+                            // 퍼센트 텍스트 그리기
+                            ctx.fillText(percentage, position.x, position.y);
+                        });
+                    }
+                });
+            }
+        }]
     });
+}
+
+  async function createPieChart2020() {
+
+
+    // 2D 렌더링 컨텍스트 가져오기
+    const piechart2020 = document.getElementById('ottChart2').getContext('2d');
+    
+    new Chart(piechart2020, {
+        type: 'pie', // 차트 타입: 파이 차트
+        data: {
+            labels: ['1시간 미만', '1시간 이상'], // 각 세그먼트의 레이블
+            datasets: [{
+                data: [25,30], // 각 세그먼트의 값
+                backgroundColor: ['rgba(255, 99, 132, 0.7)','rgba(54, 162, 235, 0.7)'], // 각 세그먼트의 배경색 배열
+                borderWidth: 2, // 세그먼트 경계선 두께
+                borderColor: '#fff' // 세그먼트 경계선 색 (흰색)
+            }]
+        },
+        options: {
+            responsive: true, // 반응형 차트
+            maintainAspectRatio: false, // 비율 유지 비활성화
+            plugins: {
+                legend: {
+                    position: 'bottom', // 범례 위치: 하단
+                    labels: {
+                        padding: 15, // 범례 항목 간 간격
+                        font: {
+                            size: 12 // 범례 폰트 크기
+                        }
+                    }
+                },
+                title: {
+                    display: false // 제목 표시 안 함
+                },
+                tooltip: {
+                    callbacks: {
+                        // 툴팁 레이블 커스터마이징: "레이블: 값 (퍼센트%)" 형식
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return `${label}: ${value} (${percentage}%)`;
+                        }
+                    }
+                }
+            }
+        },
+        plugins: [{
+            // 커스텀 플러그인: 각 파이 세그먼트에 퍼센트 텍스트 표시
+            afterDatasetsDraw: function(chart) {
+                const ctx = chart.ctx; // 캔버스 컨텍스트
+                chart.data.datasets.forEach((dataset, i) => {
+                    const meta = chart.getDatasetMeta(i);
+                    if (!meta.hidden) {
+                        meta.data.forEach((element, index) => {
+                            // 텍스트 스타일 설정
+                            ctx.fillStyle = '#fff'; // 텍스트 색상 (흰색)
+                            ctx.font = 'bold 14px Arial'; // 텍스트 폰트
+                            ctx.textAlign = 'center'; // 텍스트 정렬: 중앙
+                            ctx.textBaseline = 'middle'; // 텍스트 기준선: 중간
+
+                            // 퍼센트 계산
+                            const data = dataset.data[index];
+                            const total = dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = ((data / total) * 100).toFixed(1) + '%';
+
+                            // 세그먼트 중앙 위치 가져오기
+                            const position = element.tooltipPosition();
+                            // 퍼센트 텍스트 그리기
+                            ctx.fillText(percentage, position.x, position.y);
+                        });
+                    }
+                });
+            }
+        }]
+    });
+}
+
+window.addEventListener('load', function() {
+      createPieChart2010();
+      createPieChart2020();
+    });  
   </script>
 </body>
 </html>

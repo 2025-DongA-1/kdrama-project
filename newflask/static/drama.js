@@ -894,7 +894,7 @@ async function createtvgenbarChart2010() {
                 },
                 title: {
                     display: true, // 제목 표시
-                    text: '2020년 이전 방송사 장르 수', // 차트 제목
+                    text: '2020년 이전 tv 장르 수', // 차트 제목
                     font: {
                         size: 18, // 제목 폰트 크기
                         weight: 'bold' // 제목 폰트 굵기
@@ -950,7 +950,7 @@ async function createtvgenbarChart2020() {
                 },
                 title: {
                     display: true, // 제목 표시
-                    text: '2020년 이후 방송사 장르 수', // 차트 제목
+                    text: '2020년 이후 tv 장르 수', // 차트 제목
                     font: {
                         size: 18, // 제목 폰트 크기
                         weight: 'bold' // 제목 폰트 굵기

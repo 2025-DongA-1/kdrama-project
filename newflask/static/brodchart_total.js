@@ -11,7 +11,7 @@ fetch('static/chart_data.json')
                     data: data.values,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
-                        'rgba(4, 7, 8, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(153, 102, 255, 0.2)',
@@ -32,7 +32,7 @@ fetch('static/chart_data.json')
                 scales: { y: { 
                     beginAtZero: true,
                     min: 8.2,
-                    maz: 9
+                    max: 8.7
                  } },
                 maintainAspectRatio: false
             }

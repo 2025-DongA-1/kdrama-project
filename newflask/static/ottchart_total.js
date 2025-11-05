@@ -32,7 +32,7 @@ fetch('static/chart_data_ott.json')
                 scales: { y: { 
                     beginAtZero: true,
                     min: 8.2,
-                    maz: 9
+                    max: 8.7
                  } }
                 ,maintainAspectRatio: false
             }

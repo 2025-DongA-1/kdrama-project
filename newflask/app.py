@@ -670,4 +670,8 @@ def ottgen2020():
 if __name__ == '__main__':
     # 디버그 모드로 Flask 서버 실행
     # debug=True: 코드 변경 시 자동 재시작, 에러 메시지 상세 표시
-    app.run(debug=True)
+    app.run(
+        host = '192.168.219.107',
+        port = '5000',
+        debug=True
+        )
